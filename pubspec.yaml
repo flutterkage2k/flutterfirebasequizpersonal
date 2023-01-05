@@ -43,6 +43,8 @@ dependencies:
   firebase_storage: ^11.0.10
   google_fonts: ^3.0.1
 
+  social_login_buttons: ^1.0.7
+
   path_provider: ^2.0.11
   http: ^0.13.5
   url_launcher: ^6.1.7
