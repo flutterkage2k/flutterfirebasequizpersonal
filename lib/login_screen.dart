@@ -42,8 +42,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 FontWeight.bold,
               ),
             ),
-            SizedBox(height: 30),
-            Container(
+            const SizedBox(height: 30),
+            SizedBox(
               width: width * 0.9,
               child: SocialLoginButton(
                 buttonType: SocialLoginButtonType.google,

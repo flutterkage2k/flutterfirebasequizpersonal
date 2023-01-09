@@ -35,76 +35,81 @@ class _HomePageState extends State<HomePage> {
     double width = screenSize.width;
     double height = screenSize.height;
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text('안내'),
-          backgroundColor: Colors.deepPurple,
-          leading: Container(),
-          actions: [
-            TextButton.icon(
-              onPressed: () async {
-                await AuthService().signOut();
-              },
-              icon: const Icon(
-                Icons.logout,
-                color: Colors.white,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: SafeArea(
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text('안내'),
+            backgroundColor: Colors.deepPurple,
+            leading: Container(),
+            actions: [
+              TextButton.icon(
+                onPressed: () async {
+                  await AuthService().signOut();
+                },
+                icon: const Icon(
+                  Icons.logout,
+                  color: Colors.white,
+                ),
+                label: const Text(
+                  "나가기",
+                  style: TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w700),
+                ),
+              )
+            ],
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(
+                child: SizedBox(
+                  width: width * 0.8,
+                  height: height * 0.3,
+                  child: const Placeholder(),
+                ),
               ),
-              label: const Text(
-                "나가기",
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
+              Padding(
+                padding: EdgeInsets.all(width * 0.024),
               ),
-            )
-          ],
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Center(
-              child: SizedBox(
-                width: width * 0.8,
-                height: height * 0.3,
-                child: Placeholder(),
+              Text(
+                '귀화시험 문제',
+                style: TextStyle(
+                  fontSize: width * 0.065,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(width * 0.024),
-            ),
-            Text(
-              '귀화시험 문제',
-              style: TextStyle(
-                fontSize: width * 0.065,
-                fontWeight: FontWeight.bold,
+              const SizedBox(
+                height: 8,
               ),
-            ),
-            SizedBox(
-              height: 8,
-            ),
-            Text(
-              '퀴즈를 풀기 전 안내사항입니다.\n꼼꼼히 읽고 퀴즈 풀기를 눌러주세요.',
-              style: TextStyle(fontSize: 16),
-              textAlign: TextAlign.center,
-            ),
-            Padding(
-              padding: EdgeInsets.all(width * 0.048),
-            ),
-            _buildStep(width, '1. 무작위로 나오는 퀴즈를 풀어보세요.'),
-            _buildStep(width, '2. 문제를 잘 읽고 정답을 고른 뒤\n 다음 문제 버튼을 눌러주세요.'),
-            _buildStep(width, '3. 만점을 향해 도전해보세요!'),
-            Padding(
-              padding: EdgeInsets.all(width * 0.048),
-            ),
-            Container(
-              padding: EdgeInsets.only(bottom: width * 0.036),
-              child: Center(
-                child: ButtonTheme(
-                  minWidth: width * 0.8,
-                  height: height * 0.05,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+              const Text(
+                '퀴즈를 풀기 전 안내사항입니다.\n꼼꼼히 읽고 퀴즈 풀기를 눌러주세요.',
+                style: TextStyle(fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
+              Padding(
+                padding: EdgeInsets.all(width * 0.048),
+              ),
+              _buildStep(width, '1. 무작위로 나오는 퀴즈를 풀어보세요.'),
+              _buildStep(width, '2. 문제를 잘 읽고 정답을 고른 뒤\n 다음 문제 버튼을 눌러주세요.'),
+              _buildStep(width, '3. 만점을 향해 도전해보세요!'),
+              Padding(
+                padding: EdgeInsets.all(width * 0.048),
+              ),
+              Container(
+                padding: EdgeInsets.only(bottom: width * 0.036),
+                child: Center(
                   child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: Colors.deepPurple,
+                      fixedSize: Size(width * 0.8, height * 0.05),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -115,15 +120,15 @@ class _HomePageState extends State<HomePage> {
                         ),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       '문제를 풀어봐요',
                       style: TextStyle(color: Colors.white),
                     ),
                   ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -149,7 +154,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Text(
             title,
-            style: TextStyle(fontSize: 16),
+            style: const TextStyle(fontSize: 16),
           ),
         ],
       ),
